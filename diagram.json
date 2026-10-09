@@ -1,0 +1,442 @@
+{
+  "version": 1,
+  "author": "",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 160,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd",
+      "top": -100,
+      "left": 10,
+      "attrs": {
+        "background": "blue",
+        "color": "white"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "voltage",
+      "top": -20,
+      "left": -230,
+      "attrs": {
+        "value": "784"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "current",
+      "top": 180,
+      "left": -230,
+      "attrs": {
+        "value": "205"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "title",
+      "top": -210,
+      "left": -220,
+      "attrs": {
+        "text": "VOLTAGE PROTECTOR | Firmware demonstration",
+        "fontSize": "24"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "vlabel",
+      "top": -65,
+      "left": -270,
+      "attrs": {
+        "text": "VOLTAGE INPUT\n0-300 V equivalent",
+        "fontSize": "14"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "ilabel",
+      "top": 130,
+      "left": -270,
+      "attrs": {
+        "text": "CURRENT INPUT\n0-10 A equivalent",
+        "fontSize": "14"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "limits",
+      "top": 500,
+      "left": -220,
+      "attrs": {
+        "text": "INPUTS ARE EMULATED - NO MAINS / ACTUAL LOAD SENSING\nDefault limits: 180-250 V, 5.0 A. Serial: HELP / STATUS / RESET",
+        "fontSize": "14"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn0",
+      "top": 410,
+      "left": -30,
+      "attrs": {
+        "color": "blue",
+        "label": "MENU",
+        "key": "1"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 410,
+      "left": 80,
+      "attrs": {
+        "color": "green",
+        "label": "PLUS",
+        "key": "2"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 410,
+      "left": 190,
+      "attrs": {
+        "color": "yellow",
+        "label": "MINUS",
+        "key": "3"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": 410,
+      "left": 300,
+      "attrs": {
+        "color": "red",
+        "label": "RESET",
+        "key": "4"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "backlight",
+      "top": 20,
+      "left": 260,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay",
+      "top": 170,
+      "left": 410,
+      "attrs": {
+        "transistor": "npn"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "pullup",
+      "top": 100,
+      "left": 350,
+      "attrs": {
+        "value": "10000"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "load",
+      "top": 120,
+      "left": 640,
+      "attrs": {
+        "color": "green",
+        "label": "LOAD"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "loadR",
+      "top": 235,
+      "left": 580,
+      "attrs": {
+        "value": "330"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "fault",
+      "top": -20,
+      "left": 410,
+      "attrs": {
+        "color": "red",
+        "label": "FAULT"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "faultR",
+      "top": 55,
+      "left": 360,
+      "attrs": {
+        "value": "330"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "relaylabel",
+      "top": 300,
+      "left": 400,
+      "attrs": {
+        "text": "Green LED is fed THROUGH\nthe relay NO contact.\nRed LED = latched fault.",
+        "fontSize": "14"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "uno:A2",
+      "btn0:1.l",
+      "green",
+      []
+    ],
+    [
+      "btn0:2.l",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "uno:A3",
+      "btn1:1.l",
+      "green",
+      []
+    ],
+    [
+      "btn1:2.l",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "uno:A4",
+      "btn2:1.l",
+      "green",
+      []
+    ],
+    [
+      "btn2:2.l",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "uno:A5",
+      "btn3:1.l",
+      "green",
+      []
+    ],
+    [
+      "btn3:2.l",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "voltage:VCC",
+      "uno:5V",
+      "red",
+      []
+    ],
+    [
+      "voltage:GND",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "voltage:SIG",
+      "uno:A0",
+      "orange",
+      []
+    ],
+    [
+      "current:VCC",
+      "uno:5V",
+      "red",
+      []
+    ],
+    [
+      "current:GND",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "current:SIG",
+      "uno:A1",
+      "orange",
+      []
+    ],
+    [
+      "lcd:RS",
+      "uno:7",
+      "green",
+      []
+    ],
+    [
+      "lcd:E",
+      "uno:6",
+      "green",
+      []
+    ],
+    [
+      "lcd:D4",
+      "uno:5",
+      "green",
+      []
+    ],
+    [
+      "lcd:D5",
+      "uno:4",
+      "green",
+      []
+    ],
+    [
+      "lcd:D6",
+      "uno:3",
+      "green",
+      []
+    ],
+    [
+      "lcd:D7",
+      "uno:2",
+      "green",
+      []
+    ],
+    [
+      "lcd:VSS",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "lcd:RW",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "lcd:V0",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "lcd:K",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "lcd:VDD",
+      "uno:5V",
+      "red",
+      []
+    ],
+    [
+      "uno:5V",
+      "backlight:1",
+      "red",
+      []
+    ],
+    [
+      "backlight:2",
+      "lcd:A",
+      "red",
+      []
+    ],
+    [
+      "relay:VCC",
+      "uno:5V",
+      "red",
+      []
+    ],
+    [
+      "relay:GND",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "relay:IN",
+      "uno:8",
+      "purple",
+      []
+    ],
+    [
+      "pullup:1",
+      "uno:5V",
+      "red",
+      []
+    ],
+    [
+      "pullup:2",
+      "relay:IN",
+      "purple",
+      []
+    ],
+    [
+      "relay:COM",
+      "uno:5V",
+      "red",
+      []
+    ],
+    [
+      "relay:NO",
+      "loadR:1",
+      "green",
+      []
+    ],
+    [
+      "loadR:2",
+      "load:A",
+      "green",
+      []
+    ],
+    [
+      "load:C",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "uno:9",
+      "faultR:1",
+      "orange",
+      []
+    ],
+    [
+      "faultR:2",
+      "fault:A",
+      "orange",
+      []
+    ],
+    [
+      "fault:C",
+      "uno:GND.1",
+      "black",
+      []
+    ]
+  ],
+  "serialMonitor": {
+    "display": "always",
+    "newline": "lf",
+    "convertEol": true
+  }
+}
